@@ -21,8 +21,8 @@
            <hr>
           <h3>Make Your Reservation</h3>
     
-          <a href="tables.html"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> View Tables</button></a>
-          <a href="home.html"><button class="btn btn-danger btn-lg"><span
+          <a href="tables"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> View Tables</button></a>
+          <a href="/"><button class="btn btn-danger btn-lg"><span
                 class="fa fa-eye"></span> Home </button></a>
         </div>
         <div class="row">
@@ -34,25 +34,50 @@
     <form>
         <div class="form-group">
           <label for="exampleInputName">Name</label>
-          <input type="name" class="form-control" id="exampleInputName" aria-describedby="name">
-                  </div>
+          <input type="name"class="form-control" id="name" aria-describedby="name">
+         </div>
         <div class="form-group">
           <label for="exampleInputPhoneNumber">Phone Number</label>
-          <input type="phoneNumber" class="form-control" id="exampleInputPhoneNumber">
+          <input type="phoneNumber" class="form-control" id="number">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail">
+            <input type="email" class="form-control" id="email">
           </div>
           <div class="form-group">
             <label for="exampleInputUniqueId">Unique Id</label>
-            <input type="uniqueId" class="form-control" id="exampleInputUniqueId">
+            <input type="uniqueId" class="form-control" id="tableID">
           </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </form>
 
 </div>
 
+
+<div>
+  <a href="#" id="tableLink">API Table Link</a>
+  
+  <a href="#" id="waitList">API Wait List</a>
+  </div>
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+<script type=“text/javascript”>
+  // Question: What does this code do?
+  $(“#add-btn”).on(“click”, function(event) {
+    event.preventDefault();
+    var newTable = {
+      name: $(“#name”).val().trim(),
+      number: $(“#number”).val().trim(),
+      email: $(“#email”).val().trim(),
+      tableID: $(“#tableID”).val().trim()
+    };
+    $.post(“tables”, newTable)
+    .then(function(data) {
+      console.log(“tables.html”, data);
+      alert(`Adding Table for ${name}`);
+    });
+});
+</script>
+
 </body>
 </html>
